@@ -5,13 +5,23 @@ function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = "unread"; 
+    this.read = "unread";
+    this.button = document.createElement('button');
 }
+
+Book.prototype.readStatus = function() {
+    this.read = "read";
+    clearTable();
+    displayBooks();
+};
+
+
 
 // Function to add to Libaray Array
 function addBookToLibrary(obj) {
     myLibrary.push(obj);
 }
+
 
 const imHappyForYou = new Book("I'm Happy for you", "Kay Wills Wyma", 231);
 const theHobbit = new Book("The Hobbit", "JRR Tolkien", 298);
@@ -21,10 +31,9 @@ addBookToLibrary(imHappyForYou);
 addBookToLibrary(theHobbit);
 addBookToLibrary(crazyRichAsians);
 
-// var table = document.getElementById("table");  // set to table
 
 let myTable = document.querySelector('#table');
-let headers = ['Title', 'Author', 'Pages', 'Read/Unread'];
+let headers = ['Title', 'Author', 'Pages', 'Read/Unread', 'Update Read Status'];
 
 function displayBooks() {
     let table = document.createElement('table');
@@ -40,13 +49,25 @@ function displayBooks() {
     table.appendChild(headerRow);
 
     myLibrary.forEach(book => {
-        let row = document.createElement('tr');
-
+        let row = document.createElement('tr');         
         Object.values(book).forEach(text =>{
+            if(text == book.button) {
+                let cell = document.createElement('td');
+                let makeButton = document.createElement('button');
+                makeButton.innerHTML = "Update";
+                makeButton.onclick = () => {
+                    book.read = "read";
+                    clearTable();
+                    displayBooks();
+                  }
+                cell.appendChild(makeButton);
+                row.appendChild(cell);
+            } else {
             let cell = document.createElement('td');
             let textNode = document.createTextNode(text);
             cell.appendChild(textNode);
             row.appendChild(cell);
+            }
         });
         table.appendChild(row);
     });
@@ -55,3 +76,9 @@ function displayBooks() {
 }
 
 displayBooks();
+
+let clearTable = function() {
+    const table = document.getElementById('table');
+    table.innerHTML = '';
+}
+
