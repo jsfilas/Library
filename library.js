@@ -1,8 +1,9 @@
+// DOM elements for buttons
 const addBtn = document.querySelector('#newBook');
 const addForm = document.querySelector('#addForm');
 const submitBtn = document.querySelector('#submit');
 
-
+// Array
 let myLibrary = [];
 
 // Constructor
@@ -14,7 +15,7 @@ function Book(title, author, pages, read) {
     this.button = document.createElement('button');
     this.clear = document.createElement('button');
 }
-
+// method attached to each book to change read status
 Book.prototype.readStatus = function() {
     if (this.read == "read") {
         this.read = "unread";
@@ -27,11 +28,19 @@ Book.prototype.readStatus = function() {
 
 
 
-// Function to add to Libaray Array
+// Function to pre-load some books into Library Array
 function addBooksToLibrary(obj) {
     myLibrary.push(obj);
 }
+//adding books to library pre user
+const imHappyForYou = new Book("I'm Happy for you", "Kay Wills Wyma", 231, "unread");
+const theHobbit = new Book("The Hobbit", "JRR Tolkien", 298, "unread");
+const crazyRichAsians = new Book("Crazy Rich Asians", "Kevin Kwan", 576, "unread");
+addBooksToLibrary(imHappyForYou);
+addBooksToLibrary(theHobbit);
+addBooksToLibrary(crazyRichAsians);
 
+// function for users to add books to array via form input
 function addBookToLibrary() {
     const title = document.querySelector('#title-input').value;
     const author = document.querySelector('#author-input').value;
@@ -52,15 +61,8 @@ function addBookToLibrary() {
 }
 
 
-const imHappyForYou = new Book("I'm Happy for you", "Kay Wills Wyma", 231, "unread");
-const theHobbit = new Book("The Hobbit", "JRR Tolkien", 298, "unread");
-const crazyRichAsians = new Book("Crazy Rich Asians", "Kevin Kwan", 576, "unread");
 
-addBooksToLibrary(imHappyForYou);
-addBooksToLibrary(theHobbit);
-addBooksToLibrary(crazyRichAsians);
-
-
+// Clear table func
 let clearTable = function() {
     const table = document.getElementById('table');
     table.innerHTML = '';
@@ -70,6 +72,8 @@ let clearTable = function() {
 let myTable = document.querySelector('#table');
 let headers = ['Title', 'Author', 'Pages', 'Read/Unread', 'Update Read Status', 'Remove From Library'];
 
+// function that displays the current library into a table and 
+// makes applicable buttons for read and remove per object. 
 function displayBooks() {
     let table = document.createElement('table');
     let headerRow = document.createElement('tr');
@@ -124,7 +128,7 @@ function displayBooks() {
 displayBooks();
 
 
-
+// Event listeners
 addBtn.addEventListener('click', () => {
     addForm.hidden = false; 
     addBtn.hidden = true;
