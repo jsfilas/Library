@@ -42,9 +42,10 @@ function addBookToLibrary() {
     } else {
         read = "unread";
     } ;
-    // addForm.reset();
-    //addForm.hidden = true;
-    //addBtn.hidden = false;
+    addForm.reset();
+    addForm.hidden = true;
+    addBtn.hidden = false;
+    submitBtn.hidden = true;
     myLibrary.push(new Book(title, author, pages, read));
     clearTable();
     displayBooks();
@@ -65,9 +66,6 @@ let clearTable = function() {
     table.innerHTML = '';
 } 
 
-let cleanLibrary = function() {
-
-}
 
 let myTable = document.querySelector('#table');
 let headers = ['Title', 'Author', 'Pages', 'Read/Unread', 'Update Read Status', 'Remove From Library'];
@@ -102,10 +100,8 @@ function displayBooks() {
                 makeButton.addEventListener("click", () => {
                     for(var i = 0; i < myLibrary.length; i++) {
                         if (myLibrary[i].title == book.title) {
-                            //delete myLibrary[i];
                             myLibrary.splice([i], 1);
-                            
-
+                        
                         }
                     } 
                     clearTable(); 
@@ -129,6 +125,10 @@ displayBooks();
 
 
 
-
+addBtn.addEventListener('click', () => {
+    addForm.hidden = false; 
+    addBtn.hidden = true;
+    submitBtn.hidden = false;
+})
 submitBtn.addEventListener('click', addBookToLibrary);
 
