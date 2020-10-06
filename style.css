@@ -1,6 +1,15 @@
 body {
     text-align: center;
+    background: #e7dec8;
+    font-family: American typewriter, sans serif;
 
+}
+
+h1 {
+    background-color: #cbaf87;
+    padding: 45px;
+    margin: -10px;
+    border-bottom: 5px solid #7e8a97;
 }
 
 div {
@@ -10,11 +19,26 @@ div {
 #table {
     display: block;
     margin-top: 20px;
+    font-size: large;
+}
+
+button {
+    background-color: #cbaf87;
+    padding-left: 20%;
+    padding-right: 20%;
+    font-size: large;
+
 }
 
 th, td {
     border: 1px solid black;
     padding: 5px;
+    background-color: #7e8a97;
+}
+
+th {
+    background-color: #30475e;
+    color: antiquewhite;
 }
 
 #form-box {
@@ -25,8 +49,18 @@ th, td {
 
 #newBook {
     margin-bottom: 20px;
+    background-color: #cbaf87;
+    border-radius: 10%;
+    padding: 10px;
+    font-family: American typewriter, sans serif;
+
 }
 
 #submit {
     margin-top: 10px;
+    background-color: #cbaf87;
+    border-radius: 10%;
+    padding: 10px;
+    font-family: American typewriter, sans serif;
+
 }
